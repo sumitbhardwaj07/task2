@@ -7,7 +7,6 @@ const TaskModel = require('./task');
 const TagModel = require('./tag');
 const ActivityLogModel = require('./ActivityLog');
 const AttachmentModel = require('./Attachment');
-const StatusTransitionModel = require('./StatusTransition');
 
 const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
   host: process.env.DB_HOST,
@@ -36,7 +35,6 @@ db.Task = TaskModel(sequelize, Sequelize.DataTypes);
 db.Tag = TagModel(sequelize, Sequelize.DataTypes);
 db.ActivityLog = ActivityLogModel(sequelize, Sequelize.DataTypes);
 db.Attachment = AttachmentModel(sequelize, Sequelize.DataTypes);
-db.StatusTransition = StatusTransitionModel(sequelize, Sequelize.DataTypes);
 
 
 // Associations
@@ -78,8 +76,5 @@ db.ActivityLog.belongsTo(db.Task);
 // Task has assignee
 db.Task.belongsTo(db.User, { as: 'assignee' });
 
-// Team has many status transitions
-db.Team.hasMany(db.StatusTransition);
-db.StatusTransition.belongsTo(db.Team);
 
 module.exports = db;
