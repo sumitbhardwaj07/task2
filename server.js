@@ -12,13 +12,14 @@ const PORT = process.env.PORT || 3001;
     await db.sequelize.sync(); 
     console.log('Database connected');
 
-    app.listen(PORT, () => {
-      console.log(`Server running on http://localhost:${PORT}`);
+    app.listen(PORT, '0.0.0.0', () => {
+      console.log(`Server running on http://0.0.0.0:${PORT}`);
     });
   } catch (err) {
     console.error('Failed to start server:', err);
   }
 })();
+
 
 // const app = require('./app');
 // const db = require('./src/models');
